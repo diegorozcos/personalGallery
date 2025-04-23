@@ -1,0 +1,13 @@
+{
+  "name": "personalgallery",
+  "version": "1.0.0",
+  "description": "Upload your favorite pictures to a cloud based website",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc"
+  },
+  "author": "Diego Orozco",
+  "license": "ISC"
+}
