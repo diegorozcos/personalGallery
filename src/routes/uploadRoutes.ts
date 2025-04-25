@@ -5,6 +5,6 @@ import { verifyToken } from '../middlewares/authMiddleware';
 
 const router = Router();
 
-router.post('/', upload.single('picture'), verifyToken, uploadPicture);
+router.post('/', verifyToken, upload.single('image'), uploadPicture);
 
 export default router;

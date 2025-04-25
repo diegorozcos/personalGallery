@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import { ListObjectsV2Command, PutObjectCommand } from "@aws-sdk/client-s3";
 import { s3 } from '../middlewares/S3Middleware';
 import { httpStatus } from '../types/httpStatus';
+import imageModel from '../models/imageModel';
 
 export async function uploadPicture(req: Request, res: Response) {
   try {
@@ -13,8 +14,14 @@ export async function uploadPicture(req: Request, res: Response) {
       res.status(httpStatus.BAD_REQUEST).json({ message: "No file uploaded" });
       return;
     }
+
+    const { title, description } = req.body;
+
+    const newImage = new imageModel({ title, description, key: (file as any).key, url: (file as any).location, user: (req as any).user.id })
+
+    await newImage.save();
  
-    res.status(httpStatus.SUCCESS).json({ message: "File uploaded successfully" });
+    res.status(httpStatus.SUCCESS).json({ message: "Image uploaded and saved: ", image: newImage });
   } catch (error) {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: "An error occured while uploading your file: ", error });
   }
@@ -22,16 +29,16 @@ export async function uploadPicture(req: Request, res: Response) {
 
 export async function getGallery(req: Request, res: Response) {
   try {
-    const command = new ListObjectsV2Command({ Bucket: process.env.S3_BUCKET! });
-    const { Contents } = await s3.send(command);
+    const userId = (req as any).user.id;
 
-    const files = Contents?.map(file => ({
-        url: `https://${process.env.S3_BUCKET!}.s3.${process.env.S3_REGION!}.amazonaws.com/${file.Key}`,
-        name: file.Key
-    })) || [];
+    const images = await imageModel.find({ user: userId }).sort({ createdAt: -1 });
 
-    res.status(httpStatus.SUCCESS).json({ message: "Images found: ", files })
-
+    res.status(httpStatus.SUCCESS).json({ message: "Gallery fetched successfully: ", images: images.map(img => ({
+        title: img.title,
+        description: img.description,
+        url: img.url,
+        createdAt: img.createdAt,
+      }))})
   } catch (error) {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: "An error occured while getting your images: ", error });
   }
