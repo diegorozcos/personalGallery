@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { uploadPicture } from '../controllers/galleryController';
+import { uploadPicture } from '../controllers/uploadController';
 import { upload } from '../middlewares/S3Middleware';
 import { verifyToken } from '../middlewares/authMiddleware';
 
