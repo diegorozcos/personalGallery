@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { httpStatus } from '../types/httpStatus';
 import imageModel from '../models/imageModel';
 
-export async function uploadPicture(req: Request, res: Response) {
+export async function uploadImage(req: Request, res: Response) {
   try {
     const file = req.file;
 
@@ -21,6 +21,6 @@ export async function uploadPicture(req: Request, res: Response) {
  
     res.status(httpStatus.SUCCESS).json({ message: "Image uploaded and saved: ", image: newImage });
   } catch (error) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: "An error occured while uploading your file: ", error });
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: "An error occurred while uploading your file: ", error });
   }
 }

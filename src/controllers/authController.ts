@@ -29,7 +29,7 @@ export async function signUp(req: Request, res: Response) {
 
     res.status(httpStatus.CREATED).json({ message: "User created succesfully: ", newUser });
   } catch (error) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: "An error occured while creating the user: ", error });
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: "An error occurred while creating the user: ", error });
   }
 }
 
@@ -60,7 +60,7 @@ export async function logIn(req: Request, res: Response) {
 
     res.status(httpStatus.SUCCESS).json({ message: "User logged in succesfully", token });
   } catch (error) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: "An error occured while logging in the user: ", error })
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: "An error occurred while logging in the user: ", error })
   }
 }
 
@@ -77,6 +77,6 @@ export async function getProfile(req: Request, res: Response) {
 
     res.status(httpStatus.SUCCESS).json({ message: "User found: ", user });
   } catch (error) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: "An error occured while getting the profile: ", error });
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: "An error occurred while getting the profile: ", error });
   }
 }
