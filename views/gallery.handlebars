@@ -1,0 +1,18 @@
+<h1>Galería de imágenes</h1>
+
+{{#if images.length}}
+  <div class="gallery">
+    {{#each images}}
+      <div class="card">
+        <img src="{{this.url}}" alt="{{this.title}}">
+        <h2>{{this.title}}</h2>
+        <p>{{this.description}}</p>
+        <form method="POST" action="/gallery/{{this._id}}?_method=DELETE">
+          <button type="submit">Eliminar</button>
+        </form>
+      </div>
+    {{/each}}
+  </div>
+{{else}}
+  <p>No hay imágenes aún.</p>
+{{/if}}

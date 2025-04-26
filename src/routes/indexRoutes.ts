@@ -5,12 +5,12 @@ import uploadRouter from './uploadRoutes';
 
 const router = Router();
 
+router.get('/', (req, res) => {
+  res.render('home', { title: 'Welcome' });
+});
+
 router.use('/auth', authRouter);
 router.use('/gallery', galleryRouter);
 router.use('/upload', uploadRouter);
-
-router.get('/', (req, res) => {
-  res.send('Hello World!');
-});
 
 export default router;
