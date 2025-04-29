@@ -72,10 +72,19 @@ A **RESTful API** for managing personal image galleries with secure user authent
 | PUT    | `/gallery/:id`    | Update image details 📝           |
 | DELETE | `/gallery/:id`    | Delete an image 🗑️              |
 
-### 📄 Upload
+### ⬆️ Upload
 | Method | Route       | Description                                        |
 |--------|-------------|----------------------------------------------------|
 | POST   | `/upload`   | Upload a new image (requires login) ⬆️         |
+
+### 📄 Docs
+| Method | Route       | Description                                        |
+|--------|-------------|----------------------------------------------------|
+| GET  | `/docs`   | See the complete Swagger documentation for the API         |
+---
+
+### 🧪 Testing
+Use Postman or any other API platform to test the endpoints.
 
 ---
 
@@ -98,7 +107,10 @@ A **RESTful API** for managing personal image galleries with secure user authent
   ```bash
   npm run build
   ```
-
+- Run the project
+   ``` bash
+   npm start
+   ```
 ---
 
 ## 📨 Contributing
