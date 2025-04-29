@@ -6,7 +6,7 @@ import uploadRouter from './uploadRoutes';
 const router = Router();
 
 router.get('/', (req, res) => {
-  res.render('home', { title: 'Welcome' });
+  res.send("Hello from Personal Gallery!");
 });
 
 router.use('/auth', authRouter);
